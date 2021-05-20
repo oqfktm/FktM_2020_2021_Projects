@@ -7,14 +7,13 @@ import java.util.ArrayList;
 public class Main extends javax.swing.JFrame {
 
     // Variable Declaration
-        static String version = "Rel. [R0]";  // Version: Release R Zero
+        static String version = "Rel. [R1]";  // Version: Release R
         static int fin = 0;
         ArrayList<String> read = new ArrayList<String>();
-        static float avg = 0, weightval = 0;
+        static float avg = 0, weightval = 0, fullavg = 0;
         ArrayList<Float> calc = new ArrayList<Float>();
         static String listString = "";
-        
-        
+        ArrayList<Float> fullweight = new ArrayList<Float>();
         
     public Main() {
         initComponents();
@@ -55,7 +54,7 @@ public class Main extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTextPane1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("GradeCalc");
+        setTitle("GradeCalc " + version);
         setResizable(false);
 
         GUI_WeightSlider.setMajorTickSpacing(25);
@@ -311,10 +310,11 @@ public class Main extends javax.swing.JFrame {
     
     private void GUI_Button_BackspaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUI_Button_BackspaceActionPerformed
         // Backspace Logic
-        if (read.size() == 0 || calc.size() == 0) {} else {
+        if (read.size() == 0 || calc.size() == 0 || fullweight.size() == 0) {} else {
         
         read.remove(read.size()-1);
         calc.remove(calc.size()-1);
+        fullweight.remove(fullweight.size()-1);
         
         listString = "";
         for (String s : read) {listString += s + ", ";}
@@ -327,6 +327,7 @@ public class Main extends javax.swing.JFrame {
     private void GUI_Button_5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUI_Button_5ActionPerformed
         calc.add(5*weightval);
         read.add("5(" + weightval + ")");
+        fullweight.add(weightval);
         
         listString = "";
         for (String s : read) {listString += s + ", ";}
@@ -336,6 +337,7 @@ public class Main extends javax.swing.JFrame {
     private void GUI_Button_1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUI_Button_1ActionPerformed
         calc.add(1*weightval);
         read.add("1(" + weightval + ")");
+        fullweight.add(weightval);
         
         listString = "";
         for (String s : read) {listString += s + ", ";}
@@ -346,6 +348,7 @@ public class Main extends javax.swing.JFrame {
     private void GUI_Button_2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUI_Button_2ActionPerformed
         calc.add(2*weightval);
         read.add("2(" + weightval + ")");
+        fullweight.add(weightval);
         
         listString = "";
         for (String s : read) {listString += s + ", ";}
@@ -355,6 +358,7 @@ public class Main extends javax.swing.JFrame {
     private void GUI_Button_3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUI_Button_3ActionPerformed
         calc.add(3*weightval);
         read.add("3(" + weightval + ")");
+        fullweight.add(weightval);
         
         listString = "";
         for (String s : read) {listString += s + ", ";}
@@ -364,6 +368,7 @@ public class Main extends javax.swing.JFrame {
     private void GUI_Button_4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUI_Button_4ActionPerformed
         calc.add(4*weightval);
         read.add("4(" + weightval + ")");
+        fullweight.add(weightval);
         
         listString = "";
         for (String s : read) {listString += s + ", ";}
@@ -372,7 +377,7 @@ public class Main extends javax.swing.JFrame {
 
     private void GUI_Button_CalculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GUI_Button_CalculateActionPerformed
         // Calculate Logic
-        if (read.size() == 0 || calc.size() == 0) {} else {
+        if (read.size() == 0 || calc.size() == 0 || fullweight.size() == 0) {} else {
             
         avg = 0;
         for (float temp : calc) {
@@ -380,9 +385,16 @@ public class Main extends javax.swing.JFrame {
             temp = 0;
         }
         
-        avg /= calc.size();
+        for (int i=0; i<fullweight.size(); i++) {fullavg += fullweight.get(i);}
+        
+        avg /= fullavg;
         fin = Math.round(avg);
         GUI_Result.setText(fin + " (" + avg + ")");
+        
+        System.out.println(read);
+        System.out.println(calc);
+        System.out.println(fullweight);
+        
         }
     }//GEN-LAST:event_GUI_Button_CalculateActionPerformed
 
@@ -412,6 +424,7 @@ public class Main extends javax.swing.JFrame {
         // Reset Logic
         calc.clear();
         read.clear();
+        fullweight.clear();
         GUI_FullArea.setText("");
         GUI_Result.setText("0 (0)");
         avg = 0;
