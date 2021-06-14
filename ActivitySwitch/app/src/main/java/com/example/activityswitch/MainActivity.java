@@ -6,14 +6,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class MainActivity extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "com.example.activityswitch.MESSAGE";
     AlertDialog.Builder builder;
+    EditText input;
     public int value = 0;
+    public String send = "Default";
 
 
     @Override
@@ -22,14 +29,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("Projekt MF");
         final TextView valueTextView = (TextView) findViewById(R.id.valueTextView);
+        final TextView sendTextView = (TextView) findViewById(R.id.sendTextView);
 
         valueTextView.setText("Value: " + value);
+        sendTextView.setText("TextView: " + send);
 
         builder = new AlertDialog.Builder(this);
+        input = new EditText(this);
 
         configureNextButton();
         configureToastButton();
         configureDialogButton(valueTextView);
+        configureChangeButton(sendTextView);
+        configureSendButton();
     }
 
     private void configureNextButton() {
@@ -76,4 +88,50 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void configureChangeButton(TextView sendTextView) {
+        Button changeButton = (Button) findViewById(R.id.changeButton);
+        changeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                builder.setMessage("Čo by ste chceli mať v TextView?")
+                        .setTitle("Zmena TextView")
+                        .setCancelable(false);
+
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        send = input.getText().toString();
+                        sendTextView.setText("TextView: " + send);
+                    }
+                });
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                builder.show();
+
+
+            }
+        });
+    }
+
+    private void configureSendButton() {
+        Button sendButton = (Button) findViewById(R.id.sendButton);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SendActivity.class);
+                intent.putExtra(EXTRA_MESSAGE, send);
+                startActivity(intent);
+            }
+        });
+    }
+
 }

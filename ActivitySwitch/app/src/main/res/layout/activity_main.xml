@@ -47,4 +47,35 @@
         app:layout_constraintBottom_toTopOf="@+id/nextButton"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <TextView
+        android:id="@+id/sendTextView"
+        android:layout_width="417dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="44dp"
+        android:text="TextView: X"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/dialogButton"
+        tools:layout_editor_absoluteX="-2dp" />
+
+    <Button
+        android:id="@+id/changeButton"
+        android:layout_width="174dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="4dp"
+        android:text="Change Text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendTextView" />
+
+    <Button
+        android:id="@+id/sendButton"
+        android:layout_width="177dp"
+        android:layout_height="67dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="4dp"
+        android:text="Send To Other Activity"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

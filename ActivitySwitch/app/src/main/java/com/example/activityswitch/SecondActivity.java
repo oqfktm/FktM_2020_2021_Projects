@@ -57,15 +57,6 @@ public class SecondActivity extends AppCompatActivity {
         recyclerviewItemAdapter.notifyDataSetChanged();
     }
 
-    private void configureBackButton() {
-        Button backButton = (Button) findViewById(R.id.backButton);
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
-
+    private void configureBackButton() {Button backButton = (Button) findViewById(R.id.backButton); backButton.setOnClickListener(new View.OnClickListener() {@Override public void onClick(View v) {finish();}});}
 
 }
