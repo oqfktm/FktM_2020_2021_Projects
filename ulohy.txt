@@ -1,0 +1,66 @@
+***** ÚLOHA 1 *****
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        System.out.println("Prvých 20 čísel Fibonacciho postupnosti:");
+        int prev = 1, last = 1, next = 0;
+        System.out.print(prev + ", " + last + ", ");
+        for (int i = 0; i < 18; i++) {
+            next = prev + last;
+            prev = last;
+            last = next;
+            System.out.print(next + ", ");
+        }
+    }
+}
+
+***** ÚLOHA 2 *****
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Zadajte číslo:");
+        int cislo = s.nextInt(), sucet = 0;
+        while (cislo > 0) {
+            sucet += cislo % 10;
+            cislo /= 10;
+        }
+        System.out.println("Súčet: " + sucet);
+    }
+}
+
+***** ÚLOHA 3 *****
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner s = new Scanner(System.in);
+        System.out.println("Zadajte rodné číslo:");
+        String rodnecislo = s.next();
+        if (Integer.valueOf(rodnecislo) % 11 != 0) {System.out.println("Nie je platné rodné číslo."); System.exit(0);}
+        if (rodnecislo.charAt(2) == '5' || rodnecislo.charAt(2) == '6') {System.out.print("Žena, ");}
+        else {System.out.print("Muž, ");}
+        System.out.println("" + rodnecislo.charAt(4) + rodnecislo.charAt(5) + "." +
+                rodnecislo.charAt(2) + rodnecislo.charAt(3) + "." +
+                rodnecislo.charAt(0) + rodnecislo.charAt(1));
+    }
+}
+
+***** ÚLOHA 4 *****
+
+***** ÚLOHA 5 *****
+
+***** ÚLOHA 6 *****
+
+***** ÚLOHA 7 *****
+
+***** ÚLOHA 8 *****
+
+***** ÚLOHA 9 *****
+
+***** ÚLOHA 10 *****
